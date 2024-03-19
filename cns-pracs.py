@@ -194,8 +194,8 @@ elif selection == 'TEST':
     cmd_button = st.button('execute')
     os_name = platform.system()
     os_release = platform.release()
-    st.text("Operating System:", os_name)
-    st.text("OS Release:", os_release)
+    st.text(os_name)
+    st.text(os_release)
     if cmd_button and cmd_command:
         try:
             # Run the command and capture output
