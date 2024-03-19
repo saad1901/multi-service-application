@@ -188,11 +188,11 @@ elif selection == "Translator":
         st.markdown(translated_text)
 
 elif selection == 'TEST':
-    # get_cmd = st.
-    cmd_command = 'ifconfig'
+    cmd_command = st.text_input('Enter Command')
+    # cmd_command = 'ifconfig'
 
     cmd_button = st.button('execute')
-    if cmd_button:
+    if cmd_button and cmd_command:
         try:
             # Run the command and capture output
             output = subprocess.check_output(cmd_command, shell=True)
