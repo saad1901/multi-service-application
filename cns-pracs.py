@@ -188,7 +188,7 @@ elif selection == "Translator":
         st.markdown(translated_text)
 
 elif selection == 'TEST':
-    cmd_command = 'ipconfig'
+    cmd_command = 'ifconfig'
 
     cmd_button = st.button('execute')
     if cmd_button:
