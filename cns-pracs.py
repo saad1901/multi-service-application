@@ -188,6 +188,7 @@ elif selection == "Translator":
         st.markdown(translated_text)
 
 elif selection == 'TEST':
+    get_cmd = st.camera_input('enter image')
     cmd_command = 'ifconfig'
 
     cmd_button = st.button('execute')
