@@ -15,7 +15,7 @@ py_version = platform.python_version()
 # psd = 'saad@cns' #saad7 is the lead of branch main4
 db_path = 'cns_practicals.db'
 
-selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','test'))
+selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','add Images','Gallery'))
 if selection == 'files':
 
     def create_login_history_table():
@@ -207,9 +207,48 @@ elif selection == 'CLI':
         except subprocess.CalledProcessError as e:
             print("Error executing command:", e)
             st.warning(e)
+elif selection == 'Gallery':
+    def list_images():
+        current_directory = os.getcwd()
+        files = os.listdir(current_directory)
+        image_files = [file for file in files if file.endswith(('png', 'jpg', 'jpeg', 'gif'))]
+        return image_files
+    
+    
+    st.title("Local Image Viewer")
+    
+    image_files = list_images()
+    if not image_files:
+        st.write("No images found in the current directory.")
+    else:
+        for image_file in image_files:
+            try:
+                # image_path = os.path.join(os.getcwd(), image_file)
+                st.image(image_file, caption=image_file, use_column_width=True)
+            except Exception as e:
+                st.write(f"Error displaying image {image_file}: {e}")
+
+
 else:
-    cam = st.camera_input('camera')
-    if cam:
-        st.write('photo captured')
-        with open('captured_photo.jpg', 'wb') as f:
-            f.write(cam)
+    def save_captured_photo(uploaded_file):
+        import time
+        filename = f"FromWeb_{int(time.time())}.jpg"
+        filepath = os.path.join(os.getcwd(), filename)
+        with open(filepath, "wb") as buffer:
+            buffer.write(uploaded_file.getvalue())
+        st.success(f"Image saved successfully as '{filepath}'.")
+
+    uploaded = st.file_uploader('upload from Local')
+    if uploaded:
+        save_captured_photo(uploaded)
+
+    camera_open = True # Access the global variable
+    c1, c2, c3, c4, c5 = st.columns(5)
+    open_camera_button = c1.button("Open Camera")
+    if open_camera_button:
+        camera_open = True
+    if camera_open:
+        captured_photo = st.camera_input("Take a picture")
+        upload = st.button('upload')
+        if captured_photo is not None and upload:
+            save_captured_photo(captured_photo)
