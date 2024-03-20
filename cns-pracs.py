@@ -217,7 +217,7 @@ else:
     if uploaded_files:
         for uploaded_file in uploaded_files:
             save_captured_photo(uploaded_file)
-    on = st.toggle('Activate feature')
+    on = st.toggle('Open Camera')
     if on:
         captured_photo = st.camera_input(":red[OR Take a picture]")
         upload = st.button('upload')
