@@ -10,7 +10,7 @@ import platform
 from pydub import AudioSegment
 from pydub.playback import play
 py_version = platform.python_version()
-st.set_page_config(maxUploadSize=1024)
+# st.set_page_config(maxUploadSize=1024)
 # st.set_option('deprecation.showfileUploaderEncoding', False)
 # st.set_option('client.caching.max_file_size', 500)
 db_path = 'cns_practicals.db'
