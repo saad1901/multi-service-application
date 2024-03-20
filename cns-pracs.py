@@ -214,7 +214,7 @@ elif selection == 'Gallery':
         files = os.listdir(current_directory)
         image_files = [file for file in files if file.endswith(('png', 'jpg', 'jpeg', 'gif'))]
         return image_files
-    st.title("Image Gallery")
+    st.title(":blue[Image Gallery]")
     image_files = list_images()
     if not image_files:
         st.write("No images found in the current directory.")
