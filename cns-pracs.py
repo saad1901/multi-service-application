@@ -241,7 +241,7 @@ else:
     camera_open = True # Access the global variable
     c1, c2, c3, c4, c5 = st.columns(5)
     if camera_open:
-        captured_photo = st.camera_input("Take a picture")
+        captured_photo = st.camera_input("OR Take a picture")
         upload = st.button('upload')
         if captured_photo is not None and upload:
             save_captured_photo(captured_photo)
