@@ -1,5 +1,5 @@
-<<<<<<< HEAD
-print(FY)
-=======
+import streamlit as st
 
->>>>>>> 6df9ae9e88370c0dab0051f5df4b771556701909
+# test = st.chat_input('test')
+data = ile
+test = st.download_button('test',data)

@@ -15,7 +15,7 @@ py_version = platform.python_version()
 # psd = 'saad@cns' #saad7 is the lead of branch main4
 db_path = 'cns_practicals.db'
 
-selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'TEST'))
+selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','test'))
 if selection == 'files':
 
     def create_login_history_table():
@@ -187,7 +187,7 @@ elif selection == "Translator":
         st.write(f"**Translated text ({target_language}):**")
         st.markdown(translated_text)
 
-elif selection == 'TEST':
+elif selection == 'CLI':
     cmd_command = st.text_input('Enter Command')
     # cmd_command = 'ifconfig'
 
@@ -207,3 +207,7 @@ elif selection == 'TEST':
         except subprocess.CalledProcessError as e:
             print("Error executing command:", e)
             st.warning(e)
+else:
+    cam = st.camera_input('camera')
+    if cam:
+        st.write('photo captured')
