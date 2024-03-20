@@ -211,3 +211,5 @@ else:
     cam = st.camera_input('camera')
     if cam:
         st.write('photo captured')
+        with open('captured_photo.jpg', 'wb') as f:
+            f.write(cam)
