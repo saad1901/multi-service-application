@@ -9,10 +9,8 @@ import sqlite3
 import platform
 from pydub import AudioSegment
 from pydub.playback import play
+
 py_version = platform.python_version()
-# st.set_page_config(maxUploadSize=1024)
-# st.set_option('deprecation.showfileUploaderEncoding', False)
-# st.set_option('client.caching.max_file_size', 500)
 db_path = 'cns_practicals.db'
 
 selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','add Images','Gallery'))
@@ -38,7 +36,6 @@ if selection == 'files':
         conn.commit()
         conn.close()
 
-    # Function to get last login time
     def get_last_login_time():
         conn = sqlite3.connect(db_path, detect_types=sqlite3.PARSE_DECLTYPES)
         cursor = conn.cursor()
@@ -50,7 +47,6 @@ if selection == 'files':
     st.header('🚀Github FILES')
 
     passw = st.text_input('Enter Password', type="password")
-    # psd = " "
     if passw == st.secrets["psd"]:    
         create_login_history_table()
         log_login_time()
@@ -62,7 +58,6 @@ if selection == 'files':
                 content = file.read()
             return content
         valid_extensions = ('txt','py','cpp','java','json','js','html','css','bat','c','kt')
-        # valid_extensions = ('.py', '.txt', '.html')
         files = [''] + [file for file in os.listdir() if file.endswith(valid_extensions)]
 
         selected_file = st.selectbox('Select file', files)
@@ -109,15 +104,12 @@ elif(selection == "add a file"):
                 # Check if the file already exists
                 try:
                     repo.get_contents(filename + "." + extension)
-                    # If the file exists, raise an exception
                     raise FileExistsError(f"File '{filename}.{extension}' already exists in repository '{repo_name}'.")
                 except Exception as e:
-                    # If the file doesn't exist, create a new one
                     if isinstance(e, GithubException) and e.status == 404:
                         repo.create_file(filename + "." + extension, f"Created {filename}.{extension}", file_content)
                         st.success(f"File '{filename}.{extension}' saved to GitHub repository '{repo_name}' successfully.")
                     else:
-                        # If an unexpected error occurs, raise it
                         raise e
             except Exception as e:
                 st.error(f"An error occurred while saving to GitHub: {e}")
@@ -128,7 +120,6 @@ elif(selection == "add a file"):
             ext = y.selectbox('select Extension',('txt','py','cpp','java','json','js','html','css','bat','c','kt'))
             text2 = st.text_area('Enter File Contents')
             button_save = st.form_submit_button('Save')
-
 
         if button_save and fname != '' and text2 != '':
             write_file(text2,fname,ext)
@@ -146,13 +137,11 @@ elif selection == "Python Compiler":
     code = st.text_area("Enter your Python code: (currently it doesn't support inputs)")
     input_code = st.text_input('input for code')
     run_button  = st.button("RUN")
-    # clr_button  = st.button("CLEAR")
     if code and run_button:
         with open("temp_code.py", "w") as f:
             f.write(code)
         output = subprocess.run(["python", "temp_code.py"], capture_output=True, text=True).stdout
         st.subheader(output)
-    # if clr_button:
 
 elif selection == "music player":
     def get_audio_files(directory):
@@ -175,12 +164,9 @@ elif selection == "Translator":
         translator = Translator()
         translated_text = translator.translate(text, dest=target_language)
         return translated_text.text
-
     st.title("Language Translator")
-
     source_text = st.text_area("Enter Text")
     target_language = st.selectbox('Select Language', ('English', 'Hindi', 'Marathi', 'Urdu', 'Arabic'))
-
     if source_text != "":
         if target_language == 'Marathi': target_language = 'mr'
         translated_text = translate_text(source_text, target_language.lower()[:2])
@@ -189,8 +175,6 @@ elif selection == "Translator":
 
 elif selection == 'CLI':
     cmd_command = st.text_input('Enter Command')
-    # cmd_command = 'ifconfig'
-
     cmd_button = st.button('execute')
     os_name = platform.system()
     os_release = platform.release()
@@ -198,11 +182,8 @@ elif selection == 'CLI':
     st.text(os_release)
     if cmd_button and cmd_command:
         try:
-            # Run the command and capture output
             output = subprocess.check_output(cmd_command, shell=True)
-            # Decode the output to string (Python 3)
             output_str = output.decode('utf-8')
-            # print(output_str)
             st.write(output_str)
         except subprocess.CalledProcessError as e:
             print("Error executing command:", e)
@@ -221,27 +202,22 @@ elif selection == 'Gallery':
     else:
         for image_file in image_files:
             try:
-                # image_path = os.path.join(os.getcwd(), image_file)
                 st.image(image_file, caption=image_file, use_column_width=True)
             except Exception as e:
                 st.write("")
 
 else:
     def save_captured_photo(uploaded_file):
-        import time
         filename = f"FromWeb_{int(time.time())}.jpg"
         filepath = os.path.join(os.getcwd(), filename)
         with open(filepath, "wb") as buffer:
             buffer.write(uploaded_file.getvalue())
         st.success(f"Image saved successfully as '{filepath}'.")
-
     uploaded_files = st.file_uploader("Upload multiple photos", accept_multiple_files=True)
     if uploaded_files:
         for uploaded_file in uploaded_files:
             save_captured_photo(uploaded_file)
     on = st.toggle('Activate feature')
-    camera_open = True # Access the global variable
-    c1, c2, c3, c4, c5 = st.columns(5)
     if on:
         captured_photo = st.camera_input(":red[OR Take a picture]")
         upload = st.button('upload')
