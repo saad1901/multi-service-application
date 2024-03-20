@@ -12,7 +12,6 @@ from pydub.playback import play
 
 py_version = platform.python_version()
 
-# psd = 'saad@cns' #saad7 is the lead of branch main4
 db_path = 'cns_practicals.db'
 
 selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','add Images','Gallery'))
@@ -213,10 +212,10 @@ elif selection == 'Gallery':
         files = os.listdir(current_directory)
         image_files = [file for file in files if file.endswith(('png', 'jpg', 'jpeg', 'gif'))]
         return image_files
-    
-    
+
+
     st.title("Local Image Viewer")
-    
+
     image_files = list_images()
     if not image_files:
         st.write("No images found in the current directory.")
