@@ -234,7 +234,7 @@ else:
             buffer.write(uploaded_file.getvalue())
         st.success(f"Image saved successfully as '{filepath}'.")
 
-    uploaded = st.file_uploader('upload from Local')
+    uploaded = st.file_uploader('upload from Local',accept_multiple_files=True)
     if uploaded:
         save_captured_photo(uploaded)
 
