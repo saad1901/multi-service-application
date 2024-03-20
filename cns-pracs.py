@@ -240,9 +240,6 @@ else:
 
     camera_open = True # Access the global variable
     c1, c2, c3, c4, c5 = st.columns(5)
-    open_camera_button = c1.button("Open Camera")
-    if open_camera_button:
-        camera_open = True
     if camera_open:
         captured_photo = st.camera_input("Take a picture")
         upload = st.button('upload')
