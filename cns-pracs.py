@@ -239,10 +239,10 @@ else:
     if uploaded_files:
         for uploaded_file in uploaded_files:
             save_captured_photo(uploaded_file)
-
+    on = st.toggle('Activate feature')
     camera_open = True # Access the global variable
     c1, c2, c3, c4, c5 = st.columns(5)
-    if camera_open:
+    if on:
         captured_photo = st.camera_input(":red[OR Take a picture]")
         upload = st.button('upload')
         if captured_photo is not None and upload:
