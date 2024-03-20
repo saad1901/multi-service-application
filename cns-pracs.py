@@ -11,7 +11,7 @@ from pydub import AudioSegment
 from pydub.playback import play
 py_version = platform.python_version()
 # st.set_option('deprecation.showfileUploaderEncoding', False)
-st.set_option('client.caching.max_file_size', 500)
+# st.set_option('client.caching.max_file_size', 500)
 db_path = 'cns_practicals.db'
 
 selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','add Images','Gallery'))
