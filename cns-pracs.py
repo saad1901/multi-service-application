@@ -206,7 +206,7 @@ elif selection == 'Gallery':
             except Exception as e:
                 st.write("")
 
-elif selection ==  'App store':
+elif selection ==  'App Store':
 
 # Uploads directory (relative to app script)
     uploads_dir = "uploads"
