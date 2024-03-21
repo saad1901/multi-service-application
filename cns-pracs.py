@@ -229,7 +229,7 @@ elif selection == 'App Store':
                 content = f.read()
             st.download_button(label=filename, data=content)
         else:
-        st.error(f"File '{filename}' not found")
+            st.error(f"File '{filename}' not found")
     st.subheader("Packages")
     # Inform users about file types
     # st.info("You can upload files of any extension. However, Streamlit won't directly execute them. Make sure you know how to use the uploaded files in your environment.")
