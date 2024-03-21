@@ -13,7 +13,7 @@ from pydub.playback import play
 py_version = platform.python_version()
 db_path = 'cns_practicals.db'
 
-selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','add Images','Gallery'))
+selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','App Store','add Images','Gallery'))
 if selection == 'files':
 
     def create_login_history_table():
@@ -205,6 +205,46 @@ elif selection == 'Gallery':
                 st.image(image_file, caption=image_file, use_column_width=True)
             except Exception as e:
                 st.write("")
+
+elif selection == 'App Store':
+    uploads_dir = "uploads"
+    os.makedirs(uploads_dir, exist_ok=True)
+    def get_available_files():
+        files = []
+        for filename in os.listdir(uploads_dir):
+            files.append(filename)
+        return files
+    def upload_file():
+        uploaded_file = st.file_uploader("Choose a file to upload")
+        if uploaded_file is not None:
+            filepath = os.path.join(uploads_dir, uploaded_file.name)
+            # Save uploaded file without extension check
+            with open(filepath, "wb") as f:
+                f.write(uploaded_file.read())
+            st.success("File uploaded successfully!")
+            
+    def download_file(filename):
+        filepath = os.path.join(uploads_dir, filename)
+        if os.path.exists(filepath):
+            with open(filepath, "rb") as f:
+                content = f.read()
+            st.download_button(label=filename, data=content)
+        else:
+            st.error(f"File '{filename}' not found")
+    st.title("Streamlit File Store (Local)")
+    # Inform users about file types
+    # st.info("You can upload files of any extension. However, Streamlit won't directly execute them. Make sure you know how to use the uploaded files in your environment.")
+    
+    st.subheader("Upload Files")
+    upload_file()
+    st.subheader("Download Files")
+    available_files = get_available_files()
+    if available_files:
+        for filename in available_files:
+            # st.button(filename, on_click=lambda name=filename: download_file(name))
+            st.download_button(filename,file_name=filename,data=filename)
+    else:
+        st.info("No files uploaded yet!")
 
 else:
     def save_captured_photo(uploaded_file):
