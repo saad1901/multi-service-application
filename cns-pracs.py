@@ -235,6 +235,7 @@ elif selection == 'App Store':
     # st.info("You can upload files of any extension. However, Streamlit won't directly execute them. Make sure you know how to use the uploaded files in your environment.")
 
     st.subheader("Upload Files")
+    st.info('under development :/')
     upload_file()
     st.subheader("Download Files")
     available_files = get_available_files()
