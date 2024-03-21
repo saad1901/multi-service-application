@@ -227,7 +227,8 @@ elif selection == 'App Store':
         if os.path.exists(filepath):
             with open(filepath, "rb") as f:
                 content = f.read()
-            st.download_button(label=filename, data=content)
+            # st.download_button(label=filename, data=content)
+            st.download_button(filename, on_click=lambda name=filename: download_file(name))
         else:
             st.error(f"File '{filename}' not found")
     st.subheader("Packages")
