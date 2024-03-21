@@ -218,11 +218,10 @@ elif selection == 'App Store':
         uploaded_file = st.file_uploader("Choose a file to upload")
         if uploaded_file is not None:
             filepath = os.path.join(uploads_dir, uploaded_file.name)
-            # Save uploaded file without extension check
             with open(filepath, "wb") as f:
                 f.write(uploaded_file.read())
             st.success("File uploaded successfully!")
-            
+
     def download_file(filename):
         filepath = os.path.join(uploads_dir, filename)
         if os.path.exists(filepath):
@@ -234,7 +233,7 @@ elif selection == 'App Store':
     st.title("Streamlit File Store (Local)")
     # Inform users about file types
     # st.info("You can upload files of any extension. However, Streamlit won't directly execute them. Make sure you know how to use the uploaded files in your environment.")
-    
+
     st.subheader("Upload Files")
     upload_file()
     st.subheader("Download Files")
