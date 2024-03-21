@@ -232,7 +232,7 @@ elif selection == 'App Store':
             st.error(f"File '{filename}' not found")
 
     st.subheader("Packages")
-    st.subheader("Upload Files")
+    st.text("Upload Files")
     st.info('under development :/')
     upload_file()
 
