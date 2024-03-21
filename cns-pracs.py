@@ -230,7 +230,7 @@ elif selection == 'App Store':
             st.download_button(label=filename, data=content)
         else:
             st.error(f"File '{filename}' not found")
-    st.title("Streamlit File Store (Local)")
+    st.subheader("Packages")
     # Inform users about file types
     # st.info("You can upload files of any extension. However, Streamlit won't directly execute them. Make sure you know how to use the uploaded files in your environment.")
 
@@ -243,7 +243,8 @@ elif selection == 'App Store':
             # st.button(filename, on_click=lambda name=filename: download_file(name))
             st.download_button(filename,file_name=filename,data=filename)
     else:
-        st.info("No files uploaded yet!")
+        # st.info("No files uploaded yet!")
+        pass
 
 else:
     def save_captured_photo(uploaded_file):
