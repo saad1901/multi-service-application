@@ -223,12 +223,12 @@ elif selection == 'App Store':
             st.success("File uploaded successfully!")
 
     def download_file(filename):
-      filepath = os.path.join(uploads_dir, filename)
-      if os.path.exists(filepath):
-        with open(filepath, "rb") as f:
-          content = f.read()
-        st.download_button(label=filename, data=content, file_name=filename)
-      else:
+        filepath = os.path.join(uploads_dir, filename)
+        if os.path.exists(filepath):
+            with open(filepath, "rb") as f:
+                content = f.read()
+            st.download_button(label=filename, data=content)
+        else:
         st.error(f"File '{filename}' not found")
     st.subheader("Packages")
     # Inform users about file types
