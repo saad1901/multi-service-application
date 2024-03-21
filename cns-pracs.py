@@ -206,58 +206,45 @@ elif selection == 'Gallery':
             except Exception as e:
                 st.write("")
 
-elif selection ==  'App Store':
-
-# Uploads directory (relative to app script)
+elif selection == 'App Store':
     uploads_dir = "uploads"
-
-    # Create uploads directory if it doesn't exist
     os.makedirs(uploads_dir, exist_ok=True)
-
-    # Function to list available files
     def get_available_files():
         files = []
         for filename in os.listdir(uploads_dir):
             files.append(filename)
         return files
-
-    # Upload functionality
     def upload_file():
         uploaded_file = st.file_uploader("Choose a file to upload")
         if uploaded_file is not None:
             filepath = os.path.join(uploads_dir, uploaded_file.name)
-            # Save uploaded file without extension check
             with open(filepath, "wb") as f:
                 f.write(uploaded_file.read())
             st.success("File uploaded successfully!")
 
-    # Download functionality
     def download_file(filename):
-        filepath = os.path.join(uploads_dir, filename)
-        if os.path.exists(filepath):
-            with open(filepath, "rb") as f:
-                content = f.read()
-            st.download_button(label=filename, data=content)
-        else:
-            st.error(f"File '{filename}' not found")
-
-    # App layout
-    st.title("Streamlit File Store (Local)")
-
+      filepath = os.path.join(uploads_dir, filename)
+      if os.path.exists(filepath):
+        with open(filepath, "rb") as f:
+          content = f.read()
+        st.download_button(label=filename, data=content, file_name=filename)
+      else:
+        st.error(f"File '{filename}' not found")
+    st.subheader("Packages")
     # Inform users about file types
-    st.info("You can upload files of any extension. However, Streamlit won't directly execute them. Make sure you know how to use the uploaded files in your environment.")
+    # st.info("You can upload files of any extension. However, Streamlit won't directly execute them. Make sure you know how to use the uploaded files in your environment.")
 
     st.subheader("Upload Files")
     upload_file()
-
     st.subheader("Download Files")
     available_files = get_available_files()
     if available_files:
         for filename in available_files:
-            st.button(filename, on_click=lambda name=filename: download_file(name))
+            # st.button(filename, on_click=lambda name=filename: download_file(name))
+            st.download_button(filename,file_name=filename,data=filename)
     else:
-        st.info("No files uploaded yet!")
-
+        # st.info("No files uploaded yet!")
+        pass
 
 else:
     def save_captured_photo(uploaded_file):
