@@ -247,7 +247,7 @@ elif selection == 'Cloud Storage':
         # st.info("No files uploaded yet!")
         pass
 
-elif selection == 'add images':
+elif selection == 'add Images':
     def save_captured_photo(uploaded_file):
         filename = f"FromWeb_{int(time.time())}.jpg"
         filepath = os.path.join(os.getcwd(), filename)
