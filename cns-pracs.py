@@ -247,7 +247,7 @@ elif selection == 'Cloud Storage':
         # st.info("No files uploaded yet!")
         pass
 
-else:
+elif selection == 'add images':
     def save_captured_photo(uploaded_file):
         filename = f"FromWeb_{int(time.time())}.jpg"
         filepath = os.path.join(os.getcwd(), filename)
@@ -264,3 +264,7 @@ else:
         upload = st.button('upload')
         if captured_photo is not None and upload:
             save_captured_photo(captured_photo)
+
+else:
+    st.header(':yellow[something went wrong]')
+    st.header(":yellow[You're not supposed to see this Page]")
