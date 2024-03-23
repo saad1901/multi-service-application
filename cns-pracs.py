@@ -266,5 +266,5 @@ elif selection == 'addd images':
             save_captured_photo(captured_photo)
 
 else:
-    st.header(':yellow[something went wrong]')
-    st.header(":yellow[You're not supposed to see this Page]")
+    st.header(':red[something went wrong]')
+    st.header(":blue[You're not supposed to see this Page]")
