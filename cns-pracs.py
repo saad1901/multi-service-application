@@ -267,4 +267,4 @@ elif selection == 'add images':
 
 else:
     st.header(':red[something went wrong]')
-    st.header(":blue[You're not supposed to see this Page]")
+    st.subheader(":blue[You're not supposed to see this Page]")
