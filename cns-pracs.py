@@ -13,7 +13,7 @@ from pydub.playback import play
 py_version = platform.python_version()
 db_path = 'cns_practicals.db'
 
-selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','App Store','add Images','Gallery'))
+selection = st.sidebar.radio("select", ("files", "add a file","Python Compiler","music player","Translator",'CLI','Cloud Storage','add Images','Gallery'))
 if selection == 'files':
 
     def create_login_history_table():
@@ -206,7 +206,7 @@ elif selection == 'Gallery':
             except Exception as e:
                 st.write("")
 
-elif selection == 'App Store':
+elif selection == 'Cloud Storage':
     uploads_dir = "uploads"
     os.makedirs(uploads_dir, exist_ok=True)
     def get_available_files():
