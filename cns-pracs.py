@@ -175,7 +175,7 @@ elif selection == "Translator":
 
 elif selection == 'CLI':
     pswd2 = st.text_input('Password:', type="password")
-    if pswd2 == psd3:
+    if pswd2 == st.secrets[psd3]:
         cmd_command = st.text_input('Enter Command')
         cmd_button = st.button('execute')
         os_name = platform.system()
