@@ -174,20 +174,22 @@ elif selection == "Translator":
         st.markdown(translated_text)
 
 elif selection == 'CLI':
-    cmd_command = st.text_input('Enter Command')
-    cmd_button = st.button('execute')
-    os_name = platform.system()
-    os_release = platform.release()
-    st.text(os_name)
-    st.text(os_release)
-    if cmd_button and cmd_command:
-        try:
-            output = subprocess.check_output(cmd_command, shell=True)
-            output_str = output.decode('utf-8')
-            st.write(output_str)
-        except subprocess.CalledProcessError as e:
-            print("Error executing command:", e)
-            st.warning(e)
+    pswd2 = st.text_input('Password:', type="password")
+    if pswd2 == psd3:
+        cmd_command = st.text_input('Enter Command')
+        cmd_button = st.button('execute')
+        os_name = platform.system()
+        os_release = platform.release()
+        st.text(os_name)
+        st.text(os_release)
+        if cmd_button and cmd_command:
+            try:
+                output = subprocess.check_output(cmd_command, shell=True)
+                output_str = output.decode('utf-8')
+                st.write(output_str)
+            except subprocess.CalledProcessError as e:
+                print("Error executing command:", e)
+                st.warning(e)
 
 elif selection == 'Gallery':
     def list_images():
