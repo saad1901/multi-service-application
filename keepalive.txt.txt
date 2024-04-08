@@ -1,0 +1,23 @@
+import requests
+import time
+
+def keep_alive(url):
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            print(f"Visited {url} successfully.")
+        else:
+            print(f"Failed to visit {url}. Status code: {response.status_code}")
+    except Exception as e:
+        print(f"Error visiting {url}: {str(e)}")
+
+if __name__ == "__main__":
+    # Set your website URL here
+    website_url = "https://saadfiles.streamlit.app"
+
+    # Set the interval (in seconds) for visiting the website
+    interval_seconds = 86400  # 24 hours
+
+    while True:
+        keep_alive(website_url)
+        time.sleep(interval_seconds)
